@@ -6,6 +6,8 @@ root.title("calculator")
 e = Entry(root,width=35, borderwidth=10)
 e.grid(row=0, column=0, columnspan=3, padx=15, pady=15)
 
+#What will the buttons do is defined below:
+
 def calculations(number):
     current = e.get()
     e.delete(0, END)
@@ -22,7 +24,6 @@ def calculationsadd():
     f_num = int(first_number)
     e.delete(0, END)
 
-
 def calculationsequal():
     second_number = e.get()
     e.delete(0, END)
@@ -37,7 +38,6 @@ def calculationsequal():
     if math == "square":
         e.insert(0, f_num * f_num)
 
-
 def calculationsdivide():
     first_number = e.get()
     global f_num
@@ -45,8 +45,6 @@ def calculationsdivide():
     math = "division"
     f_num = int(first_number)
     e.delete(0, END)
-
-
 
 def calculationsmultiply():
     first_number = e.get()
@@ -65,6 +63,7 @@ def calculationssubtract():
     e.delete(0, END)
 
 def calculationssquare():
+
     first_number = e.get()
     global f_num
     global math
@@ -72,8 +71,11 @@ def calculationssquare():
     f_num = int(first_number)
     e.delete(0, END)
 
+def calculationsdel():
+    lenght = len(e.get())
+    e.delete(lenght - 1, END)
 
-
+#Now we will conigure the buttons, the digits can be entered in the entry box using "lamda" function given below:
 
 b1 = Button(root, text="1", padx=40, pady=20, bg="black", fg="white", font=10, command=lambda: calculations(1))
 b2 = Button(root, text="2", padx=40, pady=20, bg="black", fg="white", font=10, command=lambda: calculations(2))
@@ -85,13 +87,17 @@ b7 = Button(root, text="7", padx=40, pady=20, bg="black", fg="white", font=10, c
 b8 = Button(root, text="8", padx=40, pady=20, bg="black", fg="white", font=10, command=lambda: calculations(8))
 b9 = Button(root, text="9", padx=40, pady=20, bg="black", fg="white", font=10, command=lambda: calculations(9))
 b0 = Button(root, text="0", padx=40, pady=20, bg="black", fg="white", font=10, command=lambda: calculations(0))
-b_add = Button(root, text="+", padx=38, pady=20, font=10, command=calculationsadd)
+
+b_add = Button(root, text="+", padx=39, pady=20, font=10, command=calculationsadd)
 b_equal = Button(root, text="=", padx=39, pady=20, font=10, command=calculationsequal)
 b_subtract = Button(root, text="-", padx=42, pady=20, font=10, command=calculationssubtract)
-b_clear = Button(root, text="clear", padx=27, pady=20, font=10, command=calculationsclear)
-b_divide = Button(root, text="/", padx=41, pady=20, font=10, command=calculationsdivide)
+b_clear = Button(root, text="clear", padx=23, pady=20, font=10, command=calculationsclear)
+b_divide = Button(root, text="/", padx=42, pady=20, font=10, command=calculationsdivide)
 b_multiply = Button(root, text="x", padx=40, pady=20, font=10, command=calculationsmultiply)
-b_square = Button(root, text="square", padx=20, pady=20, font=10, command=calculationssquare)
+b_square = Button(root, text="square", padx=15, pady=20, font=10, command=calculationssquare)
+b_del = Button(root, text="del", padx=34, pady=20, font=10, comman=calculationsdel)
+
+#Here are the placements of the buttons:
 
 b1.grid(row=3, column=0)
 b2.grid(row=3, column=1)
@@ -106,12 +112,17 @@ b8.grid(row=1, column=1)
 b9.grid(row=1, column=2)
 
 b0.grid(row=4, column=0, columnspan=1)
+
 b_equal.grid(row=4, column=1)
 b_subtract.grid(row=5, column=1)
 b_add.grid(row=5, column=0)
+
 b_clear.grid(row=4, column=2, columnspan=1)
 b_divide.grid(row=6, column=0)
 b_multiply.grid(row=6, column=1)
+
 b_square.grid(row=5, column=2)
+b_del.grid(row=6, column=2)
+
 
 root.mainloop()
